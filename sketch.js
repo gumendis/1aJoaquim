@@ -1,51 +1,68 @@
-// fantasia, aventura, drama
+//aventura,fantasia,drama
 
-// a viagem de chihiro, LIVRE, fantasia, aventura
-// paddington, LIVRE, fantasia, aventura
-// as aventuras de pi, 10, drama, fantasia, aventura
+//homem-aranha sem volta para casa,12,aventura
+//segredo dos animais,Livre,fantasia,aventura
+//vingadores guerra infinita,12,aventura,fantaisa 
+//vingadores ultimato,12,aventura,fantasia
+//LOKI,14,aventura,
+//Stranger Things,16,drama
+//Cobra kai,14,aventura,drama
+//Jovem sheldon,10,drama
+//Capitão America guerra civil,12,aventura,drama
+//Doutor Estranho multiverso da loucura,14,ação,fantasia
 
-// Ladrões de bicicleta, 12, drama.
-// depois da chuva, 10, drama
-// guardiões da galáxia, 12, fantasia, aventura
-// ladrões de bicicleta, 12, drama
-// o menino que descobriu o vento, 14, drama
-
-  let campoIdade;
-  let campoFantasia;
+let campoIdade;
+let campoFantasia;
+let campoAventura;
 
 function setup() {
-    createCanvas(800, 400);
-    campoIdade = createInput("5");
-    campoFantasia = createCheckbox("Gosta de fantasia?");
+  createCanvas(800,400);
+  createElement("h2","recomendador de filmes e series");
+  createSpan("sua idade");
+  campoIdade = createInput("5");
+  campoFantasia = createCheckbox("gosta de fantasia?");
+  campoAventura = createCheckbox("gosta de aventura?");
 }
 
 function draw() {
-    background(220);
-    let idade = campoIdade.value();
-    let gostaDeFantasia = campoFantasia.checked();
-    let recomendacao = geraRecomendacao(idade, gostaDeFantasia);
-
-    textAlign(CENTER, CENTER);
-    textSize(38);
-    text(recomendacao, width / 2, height / 2);
+  background("#66EEFF");
+  let idade = campoIdade.value();
+  let gostaDeFantasia = campoFantasia.checked();
+  let gostaDeAventura = campoAventura.checked();
+  let recomendacao = geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura);
+  
+  fill(color(10, 0, 150));
+  textAlign(CENTER, CENTER);
+  textSize(38);
+  text(recomendacao, width / 2, height / 2);
 }
 
-function geraRecomendacao(idade, gostaDeFantasia) {
-    if(idade >= 10) {
-        if(idade >= 14) {
-            return "O menino que descobriu o vento";
-        } else {
-            if(gostaDeFantasia){
-                return "As aventuras de Pi";
-            } else {
-                return "Depois da chuva";
-            }
-        }
+function geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura) {
+  if (idade >= 10) {
+    if (idade >= 14) {
+      return "LOKI";
     } else {
-        if(gostaDeFantasia) {
-            return "A viagem de Chihiro";
-        } else {
-            return "O feitiço do tempo";
+      if (idade >= 12) {
+        if(gostaDeFantasia || gostaDeAventura) {
+          return "Homem Aranha sem volta para casa";          
+        } else{
+         return "Jovem Sheldon";
         }
+      } else {
+        if (gostaDeFantasia) {
+          return "Vingadores guerra infinita";
+        } else {
+          return "Capitão America guerra civil";
+        }
+      }
     }
+  } else {
+    if (gostaDeFantasia) {
+      return "O segredo dos animais";
+    } else {
+      return "vingadores ultimato";
+    }
+  }
 }
+
+ 
